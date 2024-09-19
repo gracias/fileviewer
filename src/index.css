@@ -7,7 +7,51 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+.App-header {
+  margin-bottom: 20px;
+}
+
+.file-viewer-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.file-input {
+  margin-bottom: 20px;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.file-icon {
+  margin-right: 10px;
+}
+
+.file-viewer {
+  width: 100%;
+  height: 600px;
+  border: 1px solid #ccc;
+}
+
+.alert {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.alert-title {
+  font-weight: bold;
+  margin-bottom: 5px;
 }
