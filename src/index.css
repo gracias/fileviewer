@@ -55,3 +55,41 @@ body {
   font-weight: bold;
   margin-bottom: 5px;
 }
+
+/* ... (previous styles remain the same) */
+
+.docx-content {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: white;
+  min-height: 600px;
+  text-align: left;
+  overflow-y: auto;
+}
+
+.docx-content h1, .docx-content h2, .docx-content h3, .docx-content h4, .docx-content h5, .docx-content h6 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.docx-content p {
+  margin-bottom: 10px;
+}
+
+.docx-content ul, .docx-content ol {
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.docx-content table {
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.docx-content td, .docx-content th {
+  border: 1px solid #ccc;
+  padding: 5px;
+}

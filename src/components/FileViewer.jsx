@@ -1,16 +1,31 @@
 import React, { useState } from 'react';
 import { FileText, Image, File } from 'lucide-react';
 import Alert from './Alert';
+import mammoth from 'mammoth';
 
 const FileViewer = () => {
   const [file, setFile] = useState(null);
   const [fileType, setFileType] = useState(null);
+  const [docxContent, setDocxContent] = useState(null);
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       setFile(URL.createObjectURL(selectedFile));
       setFileType(selectedFile.type);
+
+      if (selectedFile.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+        try {
+          const arrayBuffer = await selectedFile.arrayBuffer();
+          const result = await mammoth.convertToHtml({ arrayBuffer });
+          setDocxContent(result.value);
+        } catch (error) {
+          console.error('Error converting DOCX:', error);
+          setDocxContent('<p>Error converting DOCX file. Please try again.</p>');
+        }
+      } else {
+        setDocxContent(null);
+      }
     }
   };
 
@@ -25,10 +40,10 @@ const FileViewer = () => {
       case 'image/gif':
         return <img src={file} alt="Uploaded file" className="file-viewer" />;
       case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-        return (
-          <Alert title="DOCX Viewer">
-            DOCX viewing is not supported in the browser. You may need to use a library like mammoth.js to convert DOCX to HTML for viewing.
-          </Alert>
+        return docxContent ? (
+          <div className="docx-content" dangerouslySetInnerHTML={{ __html: docxContent }} />
+        ) : (
+          <Alert title="DOCX Viewer">Converting DOCX file...</Alert>
         );
       default:
         return (
